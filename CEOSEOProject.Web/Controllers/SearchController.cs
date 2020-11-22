@@ -4,36 +4,31 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using CEOSEOProject.Business;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
 
     [ApiController]
     [Route("[controller]")]
     public class SearchController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<SearchController> _logger;
 
-        public SearchController(ILogger<SearchController> logger)
+        private readonly ISearchService searchService;
+
+        public SearchController(ILogger<SearchController> logger,
+            ISearchService searchService,
+            IOptions<AppSettings> appSettings)
         {
             _logger = logger;
+            this.searchService = searchService;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public int Get(string engine, string term, string resultUrl)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return 5;
         }
     }
 }
