@@ -8,6 +8,11 @@ namespace CEOSEOProject.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using StackExchange.Redis.Extensions.Core;
+    using StackExchange.Redis.Extensions.Core.Abstractions;
+    using StackExchange.Redis.Extensions.Core.Configuration;
+    using StackExchange.Redis.Extensions.Core.Implementations;
+    using StackExchange.Redis.Extensions.Newtonsoft;
 
     public class Startup
     {
@@ -22,6 +27,17 @@ namespace CEOSEOProject.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("ProjectSettings"));
+            var redisConfiguration = Configuration.GetSection("Redis").Get<RedisConfiguration>();
+            services.AddSingleton(redisConfiguration);
+
+            services.AddSingleton<IRedisCacheClient, RedisCacheClient>();
+            services.AddSingleton<IRedisCacheConnectionPoolManager, RedisCacheConnectionPoolManager>();
+            services.AddSingleton<ISerializer, NewtonsoftSerializer>();
+
+            services.AddSingleton((provider) =>
+            {
+                return provider.GetRequiredService<IRedisCacheClient>().GetDbFromConfiguration();
+            });
 
             services.AddControllersWithViews();
 

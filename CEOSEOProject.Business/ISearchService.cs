@@ -1,10 +1,9 @@
 ﻿namespace CEOSEOProject.Business
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using System.Threading.Tasks;
 
     public interface ISearchService
     {
+        Task<int> Search(string engine, string term, string resultUrl);
     }
 }
