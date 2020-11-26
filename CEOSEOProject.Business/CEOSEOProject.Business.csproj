@@ -9,8 +9,6 @@
     <PackageReference Include="Google.Apis.Discovery.v1" Version="1.49.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.8" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
-    <PackageReference Include="StackExchange.Redis.Extensions.Core" Version="6.3.5" />
-    <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="6.3.5" />
   </ItemGroup>
 
 </Project>

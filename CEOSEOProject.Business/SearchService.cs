@@ -26,17 +26,17 @@
             var cacheKey = GetCacheKey(engine, term, resultUrl);
 
             // Try to match the value in cache, if found then return it
-            //var cachedResult = await this.cacheProvider.GetValue(cacheKey);
-            //if (cachedResult != null)
-            //{
-            //    return cachedResult.Value;
-            //}
+            var cachedResult = await this.cacheProvider.GetValue(cacheKey);
+            if (cachedResult != null)
+            {
+                return cachedResult.Value;
+            }
 
             // If we don't find the value in cache then have to run the query
             var webResult = await this.GetResultsFromWeb(engine, term, resultUrl);
 
             // After the query completes cache the results
-            // await cacheProvider.SetValue(cacheKey, webResult);
+            await cacheProvider.SetValue(cacheKey, webResult);
             return webResult;
         }
 
