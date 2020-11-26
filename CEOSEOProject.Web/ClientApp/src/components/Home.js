@@ -6,7 +6,7 @@ export class Home extends Component {
     constructor() {
         super();
         this.state = {
-            searchEngine: '',
+            searchEngine: 'google',
             searchTerm: '',
             resultURL: '',
             results: ''

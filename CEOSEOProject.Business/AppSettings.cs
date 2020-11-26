@@ -2,11 +2,11 @@
 {
     public class AppSettings
     {
-        public string GoogleName { get; set; }
-
         public string GoogleUrl { get; set; }
 
-        public string BingName { get; set; }
+        public string GoogleAPIKey { get; set; }
+
+        public string GoogleEngineKey { get; set; }
 
         public string BingUrl { get; set; }
 

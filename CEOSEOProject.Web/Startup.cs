@@ -41,6 +41,7 @@ namespace CEOSEOProject.Web
 
             services.AddControllersWithViews();
 
+            services.AddTransient<ICacheProvider, CacheProvider>();
             services.AddTransient<ISearchService, SearchService>();
 
             // In production, the React files will be served from this directory

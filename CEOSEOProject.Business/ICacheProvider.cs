@@ -4,7 +4,7 @@
 
     public interface ICacheProvider
     {
-        Task<int> GetValue(string key);
+        Task<int?> GetValue(string key);
 
         Task SetValue(string key, int value);
     }
